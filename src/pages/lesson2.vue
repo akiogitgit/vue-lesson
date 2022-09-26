@@ -36,7 +36,6 @@ export default {
       this.inputName = ''
     },
     deleteTodo(todoId) {
-      this.console(todoId)
       this.todos = this.todos.filter((todo, index) => {
         return index !== todoId
       })
@@ -72,5 +71,6 @@ export default {
         </button>
       </li>
     </ul>
+    <p v-if="!todos.length">Todo がまだ無いです！！！！！</p>
   </div>
 </template>
