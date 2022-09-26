@@ -1,11 +1,12 @@
-<script setup>
-import { onMounted } from 'vue'
-// import { currentTheme, initTheme, switchTheme } from './composables/theme.js'
-onMounted(() => {
-  initTheme()
-})
-const myName = 'anpan'
-const myClass = 'ui purple button'
+<script>
+export default {
+  data() {
+    return {
+      myName: 'anpan',
+      myClass: 'ui purple button',
+    }
+  },
+}
 </script>
 
 <template>
@@ -56,9 +57,4 @@ const myClass = 'ui purple button'
   <button v-on:click="counter += 1">Add 1</button>
 </template>
 
-<style>
-.text-red {
-  color: 'red';
-  background-color: 'red';
-}
-</style>
+<style></style>
