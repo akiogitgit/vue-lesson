@@ -1,4 +1,6 @@
 <script>
+import TodoAdd from '../components/TodoAdd.vue'
+
 export default {
   data() {
     return {
@@ -26,14 +28,23 @@ export default {
     },
   },
   methods: {
-    onSubmit() {
-      if (!this.inputName) {
+    // onSubmit() {
+    //   if (!this.inputName) {
+    //     console.log('入力して下さい')
+    //     return
+    //   }
+    //   console.log('submit', this.inputName)
+    //   this.todos.push({ name: this.inputName, isFinished: false })
+    //   this.inputName = ''
+    // },
+    onSubmit(name) {
+      if (!name) {
         console.log('入力して下さい')
         return
       }
-      console.log('submit', this.inputName)
-      this.todos.push({ name: this.inputName, isFinished: false })
-      this.inputName = ''
+      console.log('submit', name)
+      this.todos.push({ name, isFinished: false })
+      name = ''
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo, index) => {
@@ -41,18 +52,16 @@ export default {
       })
     },
   },
+  components: {
+    TodoAdd,
+  },
 }
 </script>
 
 <template>
   <div style="margin-left: 10px; color: blue">
     <h1>{{ title }}</h1>
-
-    <form @submit.prevent="onSubmit">
-      <input type="text" v-model="inputName" @input="onChange" />
-      <!-- <select v-model="inputName" @change="onChange">-->
-      <button type="submit">Add</button>
-    </form>
+    <TodoAdd :onSubmit="onSubmit" />
 
     {{ JSON.stringify(todos) }}
 
