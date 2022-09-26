@@ -5,7 +5,7 @@ onMounted(() => {
   initTheme()
 })
 const myName = 'anpan'
-const myClass = 'text-red'
+const myClass = 'ui purple button'
 </script>
 
 <template>
@@ -15,6 +15,8 @@ const myClass = 'text-red'
   <div :class="myClass">OK text-red</div>
   <div :class="[myClass, myClass]">OK text-red text-red</div>
   <div :class="{ myClass }">NG myClass</div>
+  <div class="ui purple">purple</div>
+
   <div :class="{ green: true, red: false }">green</div>
   <div :class="{ green: 5 > 1, red: false && 9 < 16 }">green</div>
   <button class="ui button">Button</button>
@@ -34,6 +36,17 @@ const myClass = 'text-red'
     }"
   >
     green
+  </div>
+  <div class="ui modal show">
+    <div class="header">Modal</div>
+    <div class="content">
+      <!-- content -->
+    </div>
+    <div class="actions">
+      <div class="ui approve button">Approve</div>
+      <div class="ui button">Neutral</div>
+      <div class="ui cancel button">Cancel</div>
+    </div>
   </div>
 
   <!-- <button :onClick="{() => alert(`alert`)}">alert</button> -->
