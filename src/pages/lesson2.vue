@@ -1,22 +1,22 @@
 <script>
-import TodoAdd from '../components/TodoAdd.vue'
+import TodoAdd from "../components/TodoAdd.vue"
 
 export default {
   data() {
     return {
-      title: 'Todo List',
-      inputName: 'f',
+      title: "Todo List",
+      inputName: "f",
       todos: [
         {
-          name: 'やること１',
+          name: "やること１",
           isFinished: true,
         },
         {
-          name: 'あれをやる',
+          name: "あれをやる",
           isFinished: false,
         },
         {
-          name: 'ご飯を食べる',
+          name: "ご飯を食べる",
           isFinished: true,
         },
       ],
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     app() {
-      return ''
+      return ""
     },
   },
   methods: {
@@ -39,17 +39,20 @@ export default {
     // },
     onSubmit(name) {
       if (!name) {
-        console.log('入力して下さい')
+        console.log("入力して下さい")
         return
       }
-      console.log('submit', name)
+      console.log("submit", name)
       this.todos.push({ name, isFinished: false })
-      name = ''
+      name = ""
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo, index) => {
         return index !== todoId
       })
+    },
+    deleteFinishTodos() {
+      this.todos = this.todos.filter(todo => !todo.isFinished)
     },
   },
   components: {
@@ -61,7 +64,8 @@ export default {
 <template>
   <div style="margin-left: 10px; color: blue">
     <h1>{{ title }}</h1>
-    <TodoAdd :onSubmit="onSubmit" />
+    <!-- @delete-finished は emit で TodoAdd で定義している -->
+    <TodoAdd :onSubmit="onSubmit" @delete-finished="deleteFinishTodos" />
 
     {{ JSON.stringify(todos) }}
 

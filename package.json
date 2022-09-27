@@ -20,8 +20,10 @@
     "vue-tsc": "^0.40.4"
   },
   "prettier": {
-    "singleQuote": true,
+    "singleQuote": false,
     "semi": false,
-    "trailingComma": "all"
+    "jsxSingleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid"
   }
 }

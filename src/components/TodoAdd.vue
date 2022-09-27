@@ -1,10 +1,11 @@
 <script>
 export default {
   // emit: [''],
-  props: ['onSubmit'],
+  props: ["onSubmit"],
+  emit: ["delete-finished"],
   data() {
     return {
-      inputName: 'f',
+      inputName: "f",
     }
   },
   methods: {},
@@ -12,16 +13,22 @@ export default {
 </script>
 
 <template>
-  <form
-    @submit.prevent="
-      () => {
-        onSubmit(inputName)
-        inputName = ''
-      }
-    "
-  >
-    <input type="text" v-model="inputName" />
-    <!-- <select v-model="inputName" @change="onChange">-->
-    <button type="submit">Add</button>
-  </form>
+  <div style="display: flex">
+    <!-- @submit 送信した時発火、.prevent e.preventDefault()になる -->
+    <form
+      @submit.prevent="
+        () => {
+          onSubmit(inputName)
+          inputName = ''
+        }
+      "
+    >
+      <!-- inputの onChange は @input, select は @change -->
+      <input type="text" v-model="inputName" @input="" />
+      <!-- <select v-model="inputName" @change="onChange">-->
+      <button type="submit">Add</button>
+    </form>
+    <!-- emit でclickした時、親にdelete-finished  -->
+    <button @click="$emit('delete-finished')">完了済み削除</button>
+  </div>
 </template>
