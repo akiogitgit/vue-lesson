@@ -1,5 +1,6 @@
 <script>
 import TodoAdd from "../components/TodoAdd.vue"
+import TodoList from "../components/TodoList.vue"
 
 export default {
   data() {
@@ -28,15 +29,9 @@ export default {
     },
   },
   methods: {
-    // onSubmit() {
-    //   if (!this.inputName) {
-    //     console.log('入力して下さい')
-    //     return
-    //   }
-    //   console.log('submit', this.inputName)
-    //   this.todos.push({ name: this.inputName, isFinished: false })
-    //   this.inputName = ''
-    // },
+    console() {
+      console.log("anpan")
+    },
     onSubmit(name) {
       if (!name) {
         console.log("入力して下さい")
@@ -57,6 +52,7 @@ export default {
   },
   components: {
     TodoAdd,
+    TodoList,
   },
 }
 </script>
@@ -64,12 +60,19 @@ export default {
 <template>
   <div style="margin-left: 10px; color: blue">
     <h1>{{ title }}</h1>
+    <!-- props は、:  emit は @ -->
     <!-- @delete-finished は emit で TodoAdd で定義している -->
-    <TodoAdd :onSubmit="onSubmit" @delete-finished="deleteFinishTodos" />
+    <TodoAdd
+      :onSubmit="onSubmit"
+      @delete-finished="deleteFinishTodos"
+      :consoleAnpan="console"
+    />
 
     {{ JSON.stringify(todos) }}
+    <p v-if="!todos.length">Todo がまだ無いです！！！！！</p>
+    <TodoList v-else :todos="todos" :deleteTodo="deleteTodo" />
 
-    <ul>
+    <!-- <ul v-else>
       <li v-for="(todo, index) in todos">
         <input
           type="checkbox"
@@ -83,7 +86,6 @@ export default {
           delete
         </button>
       </li>
-    </ul>
-    <p v-if="!todos.length">Todo がまだ無いです！！！！！</p>
+    </ul> -->
   </div>
 </template>

@@ -1,8 +1,9 @@
 <script>
 export default {
-  // emit: [''],
-  props: ["onSubmit"],
-  emit: ["delete-finished"],
+  props: ["onSubmit", "consoleAnpan"],
+  // 親から @delete-finished にmethodsを渡して子供で使う
+  // イベントハンドラーとして作れる
+  emits: ["delete-finished"],
   data() {
     return {
       inputName: "f",
@@ -29,6 +30,7 @@ export default {
       <button type="submit">Add</button>
     </form>
     <!-- emit でclickした時、親にdelete-finished  -->
+    <!-- <button @click="consoleAnpan">完了済み削除</button> -->
     <button @click="$emit('delete-finished')">完了済み削除</button>
   </div>
 </template>
